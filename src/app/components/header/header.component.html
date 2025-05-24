@@ -1,0 +1,27 @@
+<div class="header-container">
+    <div class="auth-section">
+        <app-auth style="display: none;"></app-auth>
+        <div class="button-container">
+            <button mat-raised-button color="primary" class="fancy-button" (click)="authComponent.openRegisterModal()">
+                <mat-icon>person_add</mat-icon>
+                הרשמה
+            </button>
+            <button mat-raised-button color="accent" class="fancy-button" (click)="authComponent.openLoginModal()">
+                <mat-icon>login</mat-icon>
+                התחברות
+            </button>
+        </div>
+    </div>
+    <div class="nav-section">
+        <nav class="main-nav">
+            <ul>
+                <li><a routerLink="/">דף הבית</a></li>
+                  <li><a href="javascript:void(0)" (click)="checkAuthAndNavigate('/courses')">קורסים</a></li>
+                <li *ngIf="isTeacher"><a routerLink="/Managment">ניהול קורסים</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="logo-section">
+        <img src="/logo.png" alt="לוגו" class="logo-img" style="width: 100px;" />
+    </div>
+</div>

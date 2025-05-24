@@ -1,0 +1,96 @@
+  <ng-template #registerModalTemplate>
+    <h2 class="modal-title">הירשם</h2>
+    <mat-dialog-content class="modal-content">
+      <form [formGroup]="registerForm" (ngSubmit)="registerUser()" class="modal-form">
+        <mat-form-field appearance="fill" class="custom-field">
+          <mat-label>שם</mat-label>
+          <input matInput type="text" formControlName="name" required>
+          <mat-error
+            *ngIf="registerForm.get('name')?.invalid && (registerForm.get('name')?.dirty || registerForm.get('name')?.touched)">
+            שם נדרש.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="custom-field">
+          <mat-label>אימייל</mat-label>
+          <input matInput type="email" formControlName="email" required>
+          <mat-error
+            *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched)">
+            <span *ngIf="registerForm.get('email')?.errors?.['required']">אימייל נדרש.</span>
+            <span *ngIf="registerForm.get('email')?.errors?.['email']">פורמט האימייל לא תקין.</span>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="custom-field">
+          <mat-label>תפקיד</mat-label>
+          <mat-select formControlName="role" required style="position: relative;">
+            <mat-option value="teacher" style="background-color: #fff;border: 1px solid;">מורה</mat-option>
+            <mat-option value="student" style="background-color: #fff;border: 1px solid;">תלמידה</mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="registerForm.get('role')?.invalid && (registerForm.get('role')?.dirty || registerForm.get('role')?.touched)">
+            תפקיד נדרש.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="custom-field">
+          <mat-label>סיסמה</mat-label>
+          <input matInput type="password" formControlName="password" required>
+          <mat-error
+            *ngIf="registerForm.get('password')?.invalid && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched)">
+            סיסמה נדרשת.
+          </mat-error>
+        </mat-form-field>
+
+        <div *ngIf="errorMessageRegister" class="error-message">
+          {{ errorMessageRegister }}
+        </div>
+
+        <div class="modal-actions">
+          <button mat-stroked-button color="warn" type="button" (click)="registerDialogRef.close()">ביטול</button>
+          <button mat-raised-button color="primary" type="submit" [disabled]="!registerForm.valid">
+            הירשם
+          </button>
+        </div>
+      </form>
+    </mat-dialog-content>
+  </ng-template>
+
+  <ng-template #loginModalTemplate>
+    <div class="modal-split">
+      <h2 class="modal-title">התחברות לחשבון</h2>
+      <mat-dialog-content class="modal-content">
+        <form [formGroup]="loginForm" (ngSubmit)="loginUser()" class="modal-form">
+          <mat-form-field appearance="fill" class="custom-field">
+            <mat-label>אימייל</mat-label>
+            <input matInput type="email" formControlName="email" required>
+            <mat-error
+              *ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)">
+              <span *ngIf="loginForm.get('email')?.errors?.['required']">אימייל נדרש.</span>
+              <span *ngIf="loginForm.get('email')?.errors?.['email']">פורמט האימייל לא תקין.</span>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="custom-field">
+            <mat-label>סיסמה</mat-label>
+            <input matInput type="password" formControlName="password" required>
+            <mat-error
+              *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)">
+              סיסמה נדרשת.
+            </mat-error>
+          </mat-form-field>
+
+          <div *ngIf="errorMessageLogin" class="error-message">
+            {{ errorMessageLogin }}
+          </div>
+
+          <div class="modal-actions">
+            <button mat-stroked-button color="warn" type="button" (click)="loginDialogRef.close()">ביטול</button>
+            <button mat-raised-button color="accent" type="submit" [disabled]="!loginForm.valid">
+              התחבר
+            </button>
+          </div>
+        </form>
+      </mat-dialog-content>
+    </div>
+  </ng-template>

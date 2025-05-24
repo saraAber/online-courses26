@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="lesson-list">
+    <h2 style="text-align: right;">שיעורים</h2>
+    <div *ngIf="lessons().length > 0; else noLessons">
+      <ul>
+        <li *ngFor="let lesson of lessons()" class="course-item">
+          <strong>{{ lesson.id }}. {{ lesson.title }}</strong>
+          <br>{{ lesson.content }}
+        </li>
+      </ul>
+    </div>
+    <ng-template #noLessons>
+      <p style="text-align: right;">אין שיעורים זמינים עבור קורס זה.</p>
+    </ng-template>
+  </div>
+</div>

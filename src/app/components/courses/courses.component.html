@@ -1,0 +1,41 @@
+<ng-container *ngIf="isLoading; else coursesContent">
+  <div class="loading-message">טוען קורסים...</div>
+</ng-container>
+
+<ng-template #coursesContent>
+  <div class="courses-list" *ngIf="courses()?.length; else noCourses">
+    <div *ngFor="let course of courses()" class="course-card">
+      <div [routerLink]="['/lessons', course.id]" class="course-link">
+        <div class="course-inner">
+          <div class="course-side">
+            <img src="https://etgar.org.il/wp-content/uploads/2022/11/Depositphotos_247402534_S.jpg"
+              style="width: 100%;height: 100%;" alt="קורסים אונליין">
+          </div>
+          <div class="course-details">
+            <div class="course-header">
+              <span class="course-title">{{ course.title }}</span>
+            </div>
+            <div class="course-content">
+              <span class="course-description">{{ course.description }}</span>
+            </div>
+            <div class="course-actions">
+              <button mat-stroked-button color="warn" *ngIf="isRegistered(course.id)"
+                (click)="unenrollFromCourse(course.id); $event.stopPropagation();">
+                הסרה מקורס
+              </button>
+              <button mat-flat-button color="primary" *ngIf="!isRegistered(course.id)"
+                (click)="enrollInCourse(course.id); $event.stopPropagation();">
+                הצטרפות לקורס
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noCourses>
+    <div class="no-courses-message">לא נמצאו קורסים.</div>
+  </ng-template>
+
+</ng-template>

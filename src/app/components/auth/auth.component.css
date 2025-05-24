@@ -1,0 +1,75 @@
+.modal-title {
+  font-size: 1.5em;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  /* ננסה להגדיר רוחב כאן */
+  width: 100%;
+  max-width: 500px;
+  /* נסי עם ערך זה */
+  margin: 0 auto;
+  /* למרכז את הטופס אם הוא קטן מהרוחב המקסימלי */
+
+}
+
+.custom-field {
+  width: 100%;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* סגנון כללי למודל כדי שיראה יותר כמו כרטיס קורס */
+.modal-split {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 24px 0 rgba(60, 60, 60, 0.10);
+  overflow: hidden;
+  width: 500px;
+  max-width: 600px;
+  /* הגדלת הרוחב המקסימלי */
+  padding: 24px;
+
+}
+
+/* אם יש צד צבעוני במודל, נסגנן אותו */
+.modal-side-dark {
+  background-color: #3f51b5;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-side-form {
+  padding: 20px;
+}

@@ -1,0 +1,183 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.custom-modal {
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  padding: 16px;
+  width: 80%;
+  max-width: 500px;
+}
+
+.modal-title {
+  margin-bottom: 16px;
+}
+
+.modal-content {
+  margin-bottom: 16px;
+}
+
+.custom-field {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal-actions button {
+  margin-left: 8px;
+}
+
+.add-course-button {
+
+  overflow: hidden;
+  padding: 10px 15px;
+  width: auto;
+}
+
+.add-course-button .button-text {
+  display: none;
+  margin-left: 8px;
+}
+
+.add-course-button:hover .button-text {
+  display: inline;
+}
+
+.add-course-button:hover {
+  padding-right: 25px;
+}
+
+
+.add-course-button mat-icon {
+  margin-right: 0;
+}
+
+.add-course-button:hover mat-icon {
+  margin-right: 8px;
+}
+
+
+.add-course-button .button-icon {
+  font-size: 1.2em;
+}
+
+.add-course-button:hover .button-icon {
+  margin-left: 0;
+}
+
+.courses-list-manage {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin-top: 24px;
+}
+
+.course-card-manage {
+  background: #0e131ec2;
+  color: #fff;
+  border-radius: 5px;
+  padding: 8px 24px;
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  width: 700px;
+  margin: 0 auto;
+  box-shadow: 0 2px 8px #0002;
+}
+
+.course-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  direction: rtl;
+  /* חשוב! */
+  width: 100%;
+}
+
+.course-title {
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  font-size: 1.1em;
+  /* אפשר להוסיף margin-left אם צריך ריווח */
+}
+
+.course-actions {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 8px;
+}
+
+.add-course-btn {
+  min-width: 56px;
+  min-height: 56px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-course-btn:hover {
+  background: #bbdefb;
+}
+
+.mat-mdc-dialog-actions {
+  justify-content: flex-start !important;
+}
+
+
+.my-tooltip {
+  background-color: white;
+  color: black;
+  border-radius: 4px;
+  font-size: 13px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.tooltip-wrapper {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.tooltip-text {
+  visibility: hidden;
+  background-color: white;
+  color: black;
+  text-align: center;
+  border-radius: 4px;
+  padding: 6px 8px;
+  position: absolute;
+  z-index: 1000;
+  top: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
+  font-size: 13px;
+  transition: opacity 0.2s;
+  opacity: 0;
+}
+
+.tooltip-wrapper:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}

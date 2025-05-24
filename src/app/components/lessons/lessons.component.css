@@ -1,0 +1,30 @@
+.lessons-list-container {
+    text-align: right;
+}
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  li {
+    direction: rtl; /* הופך את כיוון הטקסט בתוך פריט הרשימה */
+    margin-bottom: 50px;
+  }
+  
+  strong {
+    direction: ltr; /* משאיר את כיוון הטקסט של המספר והנקודה משמאל לימין */
+    font-weight: bold;
+  }
+  
+  .lesson-title {
+    direction: rtl; /* מחזיר את כיוון הטקסט של הכותרת לימין לשמאל */
+  }
+  .lesson-list li {
+  padding: 8px 0;
+  cursor: pointer;
+  text-align: right; /* מיישר את הטקסט לימין אם רוצים */
+}
+.lesson-list li:hover {
+  background-color: #f0f0f0;
+}

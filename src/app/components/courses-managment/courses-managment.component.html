@@ -1,0 +1,123 @@
+<!--כפתור הוספת קורס-->
+<button mat-icon-button class="add-course-btn" color="primary" (click)="isAddCourseVisible = true"
+  matTooltip="הוספת קורס" matTooltipPosition="below" matTooltipClass="custom-tooltip">
+  <mat-icon>post_add</mat-icon>
+</button>
+
+<!--אייקון של טעינה-->
+<ng-container *ngIf="isLoadingCourses; else coursesLoaded">
+  <div class="loading-spinner">
+    <mat-spinner diameter="40"></mat-spinner>
+  </div>
+</ng-container>
+
+<!-- טעינת הקורסים וכפתורי עריכה -->
+<ng-template #coursesLoaded>
+  <div *ngIf="myCourses().length > 0; else noCoursesToManage" class="courses-list-manage">
+    <!-- כאן הקורסים שלך -->
+    <ng-container *ngFor="let course of myCourses()">
+      <div class="course-card-manage">
+        <div class="course-header">
+          <span class="course-title">{{ course.title }}</span>
+          <span class="course-actions">
+            <button mat-icon-button (click)="toggleCourseLessons(course.id)" title="פתיחת תפריט"
+              style="margin-right: 40px;">
+              <mat-icon>
+                {{ openedCourseIds.includes(course.id) ? 'expand_more' : 'chevron_right' }}
+              </mat-icon>
+            </button>
+            <button mat-icon-button color="accent" (click)="openEditModal(course.id)" title="עריכת קורס">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="confirmDeleteCourse(course.id)" title="מחיקת קורס">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </span>
+        </div>
+      </div>
+      <div *ngIf="openedCourseIds.includes(course.id)">
+        <app-lessons-managment [courseId]="course.id"></app-lessons-managment>
+      </div>
+    </ng-container>
+  </div>
+</ng-template>
+
+<!--הודעה במידה ואין קורסים-->
+<ng-template #noCoursesToManage>
+  <div class="no-courses-message">
+    אין שיעורים לניהול.<br>
+    נא הכנסי לקורסים וייצרי קורס חדש.
+  </div>
+</ng-template>
+
+<!--מודל הוספת קורס-->
+<div class="modal-overlay" *ngIf="isAddCourseVisible">
+  <div class="custom-modal">
+    <h2 class="modal-title">הוספת קורס חדש</h2>
+    <div class="modal-content">
+      <form [formGroup]="addCourseForm" (ngSubmit)="addCourse()" class="modal-form">
+        <mat-form-field appearance="fill" class="custom-field">
+          <mat-label>כותרת</mat-label>
+          <input matInput type="text" id="title" formControlName="title" required>
+          <mat-error
+            *ngIf="addCourseForm.get('title')?.invalid && (addCourseForm.get('title')?.dirty || addCourseForm.get('title')?.touched)">
+            <div *ngIf="addCourseForm.get('title')?.errors?.['required']">
+              הכותרת נדרשת.
+            </div>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="custom-field">
+          <mat-label>תיאור</mat-label>
+          <textarea matInput id="description" formControlName="description"></textarea>
+        </mat-form-field>
+
+        <div class="modal-actions">
+          <button mat-stroked-button color="warn" type="button" (click)="isAddCourseVisible = false">ביטול</button>
+          <button mat-raised-button color="primary" type="submit">שמור קורס</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!--מודל עריכת קורס-->
+<div class="modal-overlay" *ngIf="isEditCourseVisible">
+  <div class="custom-modal">
+    <h2 class="modal-title">עדכון קורס</h2>
+    <div class="modal-content">
+      <form [formGroup]="editCourseForm" (ngSubmit)="updateCourse()" class="modal-form">
+        <mat-form-field appearance="fill" class="custom-field">
+          <mat-label>כותרת</mat-label>
+          <input matInput type="text" id="editTitle" formControlName="title" required>
+          <mat-error
+            *ngIf="editCourseForm.get('title')?.invalid && (editCourseForm.get('title')?.dirty || editCourseForm.get('title')?.touched)">
+            <div *ngIf="editCourseForm.get('title')?.errors?.['required']">
+              הכותרת נדרשת.
+            </div>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="custom-field">
+          <mat-label>תיאור</mat-label>
+          <textarea matInput id="editDescription" formControlName="description"></textarea>
+        </mat-form-field>
+
+        <div class="modal-actions">
+          <button mat-stroked-button color="warn" type="button"
+            (click)="isEditCourseVisible = false; editCourseForm.reset()">ביטול</button>
+          <button mat-raised-button color="primary" type="submit">עדכן קורס</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!--דיאלוג לפני מחיקה-->
+<ng-template #confirmDeleteDialog>
+  <mat-dialog-content style="align-items: center;">האם אתה בטוח שברצונך למחוק קורס זה?</mat-dialog-content>
+  <mat-dialog-actions style="text-align: start;">
+    <button mat-button [mat-dialog-close]="false">ביטול</button>
+    <button mat-raised-button color="warn" [mat-dialog-close]="true">מחק</button>
+  </mat-dialog-actions>
+</ng-template>
