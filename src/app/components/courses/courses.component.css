@@ -127,3 +127,14 @@
   text-decoration: none;
   color: inherit;
 }
+
+.custom-snackbar {
+  margin-top: 90px !important;
+  z-index: 1000 !important; /* ערך גבוה כדי להבטיח שהוא מעל הכל */
+}
+
+.mat-snack-bar-container {
+  margin-left: 90px !important;
+  margin-right: 90px !important;
+  z-index: 1000 !important; /* גם לקונטיינר */
+}

@@ -1,8 +1,11 @@
-<ng-container *ngIf="isLoading; else coursesContent">
-  <div class="loading-message">טוען קורסים...</div>
+<ng-container *ngIf="isLoading; else loadedContent">
+  <div class="loading-spinner">
+    <mat-spinner diameter="40"></mat-spinner>
+  </div>
 </ng-container>
 
-<ng-template #coursesContent>
+
+<ng-template #loadedContent>
   <div class="courses-list" *ngIf="courses()?.length; else noCourses">
     <div *ngFor="let course of courses()" class="course-card">
       <div [routerLink]="['/lessons', course.id]" class="course-link">
@@ -37,5 +40,4 @@
   <ng-template #noCourses>
     <div class="no-courses-message">לא נמצאו קורסים.</div>
   </ng-template>
-
 </ng-template>

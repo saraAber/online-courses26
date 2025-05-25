@@ -88,3 +88,16 @@ app-header {
 mat-dialog-content.mat-mdc-dialog-content.mdc-dialog__content.modal-content {
     width: 500px;
 }
+
+.mdc-snackbar__surface.mat-mdc-snackbar-surface {
+    margin: 90px;
+    z-index: 1000;
+}
+
+.mdc-snackbar__surface.mat-mdc-snackbar-surface {
+    background: #ffffff !important;
+}
+.mat-mdc-snack-bar-container .mat-mdc-snackbar-surface {
+
+    border-radius: 10px !important;
+}
