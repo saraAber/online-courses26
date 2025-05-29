@@ -110,12 +110,12 @@ mat-dialog-content.mat-mdc-dialog-content.mdc-dialog__content.modal-content {
 
 }
 
-span.mdc-button__label {
-    background: #c1ffc1;
-    border-radius: 20px;
-    width: 30px;
-    height: 30px;
-}
 .mat-mdc-snack-bar-container .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled) {
     --mat-text-button-state-layer-color: #ffffff !important;
+}
+.success-snackbar span.mdc-button__label {
+  background: #c1ffc1;
+  border-radius: 20px;
+  width: 30px;
+  height: 30px;
 }
