@@ -28,9 +28,7 @@ export class CoursesComponent implements OnInit {
   isLoading: boolean = true;
   isRefreshingRegisteredCourses: boolean = false;
 
-  gearsOptions: AnimationOptions = {
-    path: '/engine-tool-shape.json'
-  };
+
 
   ngOnInit(): void {
     this.isLoading = true;
@@ -73,10 +71,11 @@ export class CoursesComponent implements OnInit {
         next: () => {
           console.log(`המשתמש ${userId} נרשם לקורס ${courseId} בהצלחה`);
           this.loadRegisteredCourses(); // רענון רק של הקורסים הרשומים
-          this.snackBar.open(' \u2713 ביטול רישום בוצע בהצלחה ', undefined, {
+          this.snackBar.open('נרשמת לקורס בהצלחה', '✓', {
             duration: 3000,
             horizontalPosition: 'center',
             verticalPosition: 'bottom',
+            panelClass: 'success-snackbar'
           });
         },
         error: (error) => {
@@ -95,10 +94,11 @@ export class CoursesComponent implements OnInit {
         next: () => {
           console.log(`המשתמש ${userId} הוסר מהקורס ${courseId} בהצלחה`);
           this.loadRegisteredCourses(); // רענון רק של הקורסים הרשומים
-          this.snackBar.open(' \u2713 ביטול רישום בוצע בהצלחה ', 'אישור', {
+          this.snackBar.open('ביטול הרשמה בוצע בהצלחה', '✓', {
             duration: 3000,
-            horizontalPosition: 'end',
-            verticalPosition: 'top',
+            horizontalPosition: 'center',
+            verticalPosition: 'bottom',
+            panelClass: 'success-snackbar'
           });
         },
         error: (error) => {
