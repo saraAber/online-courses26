@@ -1,6 +1,6 @@
 import { HostListener, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError, of, Subscription, fromEvent } from 'rxjs';
+import { Observable, throwError, of, Subscription, fromEvent, BehaviorSubject } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { User } from '../model/user.model';
 import {  Router } from '@angular/router';
@@ -17,7 +17,8 @@ interface AuthResponse {
   providedIn: 'root'
 })
 export class AuthService {
-  
+  private roleSubject = new BehaviorSubject<string | null>(null);
+  role$ = this.roleSubject.asObservable();
   private apiUrl = 'http://localhost:3000/api/auth';
 
   constructor(private http: HttpClient, private router: Router) {
@@ -39,8 +40,9 @@ export class AuthService {
       );
   }
   private saveToken(token: string): void {
-    console.log('  הטוקן נשמר ')
     sessionStorage.setItem('token', token);
+    const role = this.getRole();
+    this.roleSubject.next(role);
   }
 
   getToken(): string | null {
